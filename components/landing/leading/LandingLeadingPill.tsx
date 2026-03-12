@@ -4,7 +4,7 @@ import { convertToRgba } from '@/lib/utils';
 import { clsx } from 'clsx';
 import Link from 'next/link';
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { motion, easeOut } from 'framer-motion';
 
 /**
  * A flexible pill component for landing pages that can display text with optional left/right components.
@@ -171,6 +171,7 @@ export const LandingLeadingPill = ({
   };
 
   const textStyleClasses = {
+    default: '',
     capitalize: 'capitalize',
     uppercase: 'uppercase tracking-wider',
   };
@@ -254,7 +255,7 @@ export const LandingLeadingPill = ({
       opacity: 1,
       transition: {
         duration: 0.3,
-        ease: 'easeOut',
+        ease: easeOut,
       },
     },
   };
@@ -267,7 +268,7 @@ export const LandingLeadingPill = ({
       opacity: 1,
       transition: {
         duration: 0.3,
-        ease: 'easeOut',
+        ease: easeOut,
       },
     },
   };
