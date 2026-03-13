@@ -1,5 +1,10 @@
 import React from 'react';
 import { LucideIcon, Rocket, ShieldCheck, Smartphone } from 'lucide-react';
+import { Button } from '@/components/shared/ui/button';
+import { LandingProductFeature } from '@/components/landing/LandingProductFeature';
+import { LandingProductFeatureKeyPoints } from '@/components/landing/LandingProductFeatureKeyPoints';
+
+import image from '@/src/images/image_16.png';
 
 export interface Feature {
   id: number;
@@ -15,21 +20,43 @@ export interface FeaturesGridProps {
 const iconClasses = "w-8 h-8 text-primary-500 mb-4";
 
 const FeaturesGrid: React.FC<FeaturesGridProps> = ({ features }) => {
+  const keyPoints = [
+    {
+      title: 'Consulta de dados públicos',
+      description:
+        'Pague apenas o que usar. Sem mensalidades, sem surpresas. Acesse dados públicos essenciais para avaliação de crédito.',
+    },
+    {
+      title: 'Motor de análise de crédito',
+      description:
+        'Avaliação de risco de crédito em segundos. Nossos algoritmos avançados analisam dados públicos para fornecer insights precisos e confiáveis.',
+    },
+    {
+      title: 'Suporte',
+      description:
+        'Suporte 24/7. Estamos aqui para ajudá-lo a qualquer momento do dia. Basta perguntar.',
+    },
+  ];
+
   return (
-    <section className="bg-background py-20">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-white text-center mb-12">Funcionalidades</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {features.map((feature) => (
-            <div key={feature.id} className="bg-card rounded-xl p-8 flex flex-col items-center shadow-lg border border-border">
-              <feature.icon className={iconClasses} />
-              <h3 className="text-xl font-semibold text-white mb-2 text-center">{feature.title}</h3>
-              <p className="text-gray-300 text-center">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <LandingProductFeature
+      title="Nossos serviços"
+      descriptionComponent={
+        <>
+          <LandingProductFeatureKeyPoints keyPoints={keyPoints} className=''/>
+
+          <Button className="mt-8" asChild>
+            <a href="#">Experimente agora gratuitamente</a>
+          </Button>
+
+          <p className="text-sm">Suporte incluso</p>
+        </>
+      }
+      imageSrc={image}
+      imageAlt="Screenshot of the product"
+      imagePosition="left"
+      imagePerspective="right"
+    />
   );
 };
 
