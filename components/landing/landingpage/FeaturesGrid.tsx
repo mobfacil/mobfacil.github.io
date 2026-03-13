@@ -52,7 +52,7 @@ const FeaturesGrid: React.FC<FeaturesGridProps> = ({ features }) => {
           <p className="text-sm">Suporte incluso</p>
         </>
       }
-      imageSrc={image}
+      imageSrc={image.src}
       imageAlt="Screenshot of the product"
       imagePosition="left"
       imagePerspective="right"
