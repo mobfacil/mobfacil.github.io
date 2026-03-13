@@ -1,4 +1,7 @@
+"use client";
+
 import React from 'react';
+import { motion } from 'framer-motion';
 import Hero from './Hero';
 import Navbar from './Navbar';
 import FeaturesGrid, { Feature } from './FeaturesGrid';
@@ -6,7 +9,6 @@ import Testimonials from './Testimonials';
 import Footer, { FooterColumn } from './Footer';
 import { Rocket, ShieldCheck, Smartphone } from 'lucide-react';
 import { LandingCurvedLinesCtaBg } from '@/components/landing/cta-backgrounds/LandingCurvedLinesCtaBg';
-
 
 const navbarLinks = [
   { label: 'Início', href: '#hero' },
@@ -72,25 +74,42 @@ const footerColumns: FooterColumn[] = [
 ];
 
 const LandingPageMock: React.FC = () => {
+  const easeOut = [0.16, 1, 0.3, 1] as const;
+
+  const sectionMotion = {
+    initial: { opacity: 0, y: 32 },
+    whileInView: { opacity: 1, y: 0 },
+    transition: { duration: 0.75, ease: easeOut },
+    viewport: { once: true, amount: 0.35 },
+  };
+
   return (
-    <div className="bg-background min-h-screen flex flex-col">
+    <motion.div
+      className="bg-background min-h-screen flex flex-col"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: easeOut }}
+    >
       <LandingCurvedLinesCtaBg variant="primary" />
       <div className="w-full flex justify-center pt-8">
         <Navbar links={navbarLinks} />
       </div>
       <main className="flex-1">
-        <div id="hero">
-          <Hero headline="Otimize suas vendas com segurança" subtext="Utilize dados públicos e inteligência analítica para avaliar risco de crédito com mais precisão e menos inadimplência." />
-        </div>
-        <div id="features">
+        <motion.section id="hero" {...sectionMotion}>
+          <Hero
+            headline="Otimize suas vendas com segurança"
+            subtext="Utilize dados públicos e inteligência analítica para avaliar risco de crédito com mais precisão e menos inadimplência."
+          />
+        </motion.section>
+        <motion.section id="features" {...sectionMotion}>
           <FeaturesGrid features={features} />
-        </div>
-        <div id="testimonials">
+        </motion.section>
+        <motion.section id="testimonials" {...sectionMotion}>
           <Testimonials />
-        </div>
+        </motion.section>
       </main>
       <Footer columns={footerColumns} />
-    </div>
+    </motion.div>
   );
 };
 

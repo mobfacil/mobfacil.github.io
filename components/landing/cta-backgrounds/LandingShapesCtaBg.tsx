@@ -131,7 +131,7 @@ ElegantShape.displayName = 'ElegantShape';
 export const LandingShapesCtaBg = ({
   className,
   variant = 'default',
-  shapeType = 'rectangle',
+  shapeType = 'square',
   shapeCount = 5,
   animationSpeed = 'normal',
 }: {
@@ -328,9 +328,9 @@ export const LandingShapesCtaBg = ({
         {isInView &&
           shapes.map((shape) => {
             const gradients = [
-              gradientColors.color1,
-              gradientColors.color2,
-              gradientColors.color3,
+              'rgba(91, 248, 0, 0.29)', // gray-500
+              'rgba(91, 248, 0, 0.29)', // neutral-500
+              'rgba(91, 248, 0, 0.29)',
             ];
             const gradientColor = gradients[shape.colorIndex];
 

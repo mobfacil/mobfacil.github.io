@@ -1,10 +1,13 @@
-import React from 'react';
-import { LucideIcon, Rocket, ShieldCheck, Smartphone } from 'lucide-react';
+"use client";
+
+import React, { useRef } from 'react';
+import { LucideIcon } from 'lucide-react';
 import { Button } from '@/components/shared/ui/button';
 import { LandingProductFeature } from '@/components/landing/LandingProductFeature';
 import { LandingProductFeatureKeyPoints } from '@/components/landing/LandingProductFeatureKeyPoints';
 
 import image from '@/src/images/image_16.png';
+import { LandingShapesCtaBg } from '../cta-backgrounds/LandingShapesCtaBg';
 
 export interface Feature {
   id: number;
@@ -17,9 +20,8 @@ export interface FeaturesGridProps {
   features: Feature[];
 }
 
-const iconClasses = "w-8 h-8 text-primary-500 mb-4";
-
-const FeaturesGrid: React.FC<FeaturesGridProps> = ({ features }) => {
+const FeaturesGrid: React.FC<FeaturesGridProps> = ({ features: _features }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const keyPoints = [
     {
       title: 'Consulta de dados públicos',
@@ -39,24 +41,34 @@ const FeaturesGrid: React.FC<FeaturesGridProps> = ({ features }) => {
   ];
 
   return (
-    <LandingProductFeature
-      title="Nossos serviços"
-      descriptionComponent={
-        <>
-          <LandingProductFeatureKeyPoints keyPoints={keyPoints} className=''/>
+    <div
+      ref={containerRef}
+      className="relative min-h-[100dvh] overflow-hidden"
+    >
+      <LandingShapesCtaBg
+      variant='secondary'
+        className="absolute inset-0 z-0 h-full w-full pointer-events-none"
+      />
+      <LandingProductFeature
+        title="Nossos serviços"
+        className="h-[100dvh]"
+        descriptionComponent={
+          <>
+            <LandingProductFeatureKeyPoints keyPoints={keyPoints} className="" />
 
-          <Button className="mt-8" asChild>
-            <a href="#">Experimente agora gratuitamente</a>
-          </Button>
+            <Button className="mt-8" asChild>
+              <a href="#">Experimente agora gratuitamente</a>
+            </Button>
 
-          <p className="text-sm">Suporte incluso</p>
-        </>
-      }
-      imageSrc={image.src}
-      imageAlt="Screenshot of the product"
-      imagePosition="left"
-      imagePerspective="right"
-    />
+            <p className="text-sm">Suporte incluso</p>
+          </>
+        }
+        imageSrc={image.src}
+        imageAlt="Screenshot of the product"
+        imagePosition="left"
+        imagePerspective="right"
+      />
+    </div>
   );
 };
 
