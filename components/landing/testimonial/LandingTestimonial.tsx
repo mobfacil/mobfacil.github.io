@@ -36,7 +36,7 @@ export const LandingTestimonial = ({
         featured ? 'shadow-xl' : 'p-6',
         missingUrl
           ? 'cursor-default pointer-events-none'
-          : 'cursor-pointer hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors',
+          : 'cursor-pointer hover:bg-black/35 hover:border-[#7fe655b3] dark:hover:bg-neutral-800/60 transition-colors',
         className,
       )}
     >
