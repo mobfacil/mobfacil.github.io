@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
+import { Linkedin } from 'lucide-react';
 
 export interface FooterColumn {
   title: string;
@@ -11,20 +11,18 @@ export interface FooterProps {
 }
 
 const socialLinks = [
-  { icon: Facebook, href: '#' },
-  { icon: Instagram, href: '#' },
-  { icon: Twitter, href: '#' },
-  { icon: Linkedin, href: '#' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/company/mobf%C3%A1cil/', label: 'LinkedIn' },
 ];
 
 const Footer: React.FC<FooterProps> = ({ columns }) => {
   return (
     <footer className="bg-background border-t border-border py-12">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      {/* Desktop */}
+      <div className="flex flex-col items-center max-w-7xl mx-auto px-6 mb-8">
         {columns.map((col, i) => (
           <div key={i}>
-            <h4 className="text-lg font-semibold text-white mb-4">{col.title}</h4>
-            <ul className="space-y-2">
+            <h4 className="text-lg font-semibold text-white mb-4 text-center">{col.title}</h4>
+            <ul className="flex flex-wrap gap-4">
               {col.links.map((link) => (
                 <li key={link.href}>
                   <a href={link.href} className="text-gray-300 hover:text-primary-400 transition-colors">
@@ -39,7 +37,7 @@ const Footer: React.FC<FooterProps> = ({ columns }) => {
       <div className="flex justify-center gap-6 mb-4">
         {socialLinks.map((s, i) => (
           <a key={i} href={s.href} className="text-gray-300 hover:text-primary-400 transition-colors">
-            <s.icon className="w-6 h-6" />
+            <s.icon className="w-8 h-8" />
           </a>
         ))}
       </div>
