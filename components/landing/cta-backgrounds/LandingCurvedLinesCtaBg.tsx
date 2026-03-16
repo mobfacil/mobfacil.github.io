@@ -108,7 +108,7 @@ export const LandingCurvedLinesCtaBg = ({
   return (
     <div
       ref={domRef}
-      className={clsx('absolute inset-0 overflow-hidden', className)}
+      className={clsx('absolute inset-0 overflow-hidden pointer-events-none', className)}
     >
       <svg
         className="absolute h-full w-full"
