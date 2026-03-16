@@ -9,12 +9,12 @@ import Testimonials from './Testimonials';
 import Footer, { FooterColumn } from './Footer';
 import { Rocket, ShieldCheck, Smartphone } from 'lucide-react';
 import { LandingCurvedLinesCtaBg } from '@/components/landing/cta-backgrounds/LandingCurvedLinesCtaBg';
+import NavbarMobile from './NavbarMobile';
 
 const navbarLinks = [
   { label: 'Início', href: '#hero' },
   { label: 'Funcionalidades', href: '#features' },
-  { label: 'Depoimentos', href: '#testimonials' },
-  { label: 'Planos', href: '#pricing' },
+  { label: 'Depoimentos', href: '#testimonials' }
 ];
 
 const features: Feature[] = [
@@ -39,36 +39,36 @@ const features: Feature[] = [
 ];
 
 const footerColumns: FooterColumn[] = [
-  {
-    title: 'Produto',
-    links: [
-      { label: 'Funcionalidades', href: '#' },
-      { label: 'Preços', href: '#' },
-      { label: 'Blog', href: '#' },
-    ],
-  },
-  {
-    title: 'Empresa',
-    links: [
-      { label: 'Sobre', href: '#' },
-      { label: 'Carreiras', href: '#' },
-      { label: 'Contato', href: '#' },
-    ],
-  },
-  {
-    title: 'Recursos',
-    links: [
-      { label: 'Ajuda', href: '#' },
-      { label: 'API', href: '#' },
-      { label: 'Status', href: '#' },
-    ],
-  },
+  // {
+  //   title: 'Produto',
+  //   links: [
+  //     { label: 'Funcionalidades', href: '#' },
+  //     { label: 'Preços', href: '#' },
+  //     { label: 'Blog', href: '#' },
+  //   ],
+  // },
+  // {
+  //   title: 'Empresa',
+  //   links: [
+  //     { label: 'Sobre', href: '#' },
+  //     { label: 'Carreiras', href: '#' },
+  //     { label: 'Contato', href: '#' },
+  //   ],
+  // },
+  // {
+  //   title: 'Recursos',
+  //   links: [
+  //     { label: 'Ajuda', href: '#' },
+  //     { label: 'API', href: '#' },
+  //     { label: 'Status', href: '#' },
+  //   ],
+  // },
   {
     title: 'Legal',
     links: [
-      { label: 'Privacidade', href: '#' },
-      { label: 'Termos', href: '#' },
-      { label: 'Cookies', href: '#' },
+      { label: 'Privacidade', href: '/privacidade' },
+      { label: 'Termos', href: '/termos' },
+      { label: 'Cookies', href: '/cookies' },
     ],
   },
 ];
@@ -92,7 +92,12 @@ const LandingPageMock: React.FC = () => {
     >
       <LandingCurvedLinesCtaBg variant="primary" />
       <div className="w-full flex justify-center pt-8">
-        <Navbar links={navbarLinks} />
+        <div className='flex md:hidden'>
+          <NavbarMobile links={navbarLinks} />
+        </div>
+        <div className='hidden md:flex'>
+          <Navbar links={navbarLinks} />
+        </div>
       </div>
       <main className="flex-1">
         <motion.section id="hero" {...sectionMotion}>
