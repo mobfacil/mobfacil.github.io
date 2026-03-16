@@ -33,6 +33,11 @@ const FeaturesGrid: React.FC<FeaturesGridProps> = ({ features: _features }) => {
       description:
         'Avaliação de risco de crédito em segundos. Nossos algoritmos avançados analisam dados públicos para fornecer insights precisos e confiáveis.',
     },
+        {
+      title: 'Onboarding Digital Fácil e Seguro',
+      description:
+        'Simplifique o processo de cadastro dos seus clientes com nossa plataforma intuitiva e segura, garantindo uma experiência fluida e protegida.',
+    },
     {
       title: 'Suporte',
       description:
@@ -51,16 +56,16 @@ const FeaturesGrid: React.FC<FeaturesGridProps> = ({ features: _features }) => {
       />
       <LandingProductFeature
         title="Nossos serviços"
-        className="h-[100dvh]"
+        className=""
         descriptionComponent={
           <>
             <LandingProductFeatureKeyPoints keyPoints={keyPoints} className="" />
 
-            <Button className="mt-8" asChild>
+            {/* <Button className="mt-8" asChild>
               <a href="#">Experimente agora gratuitamente</a>
-            </Button>
+            </Button> */}
 
-            <p className="text-sm">Suporte incluso</p>
+            {/* <p className="text-sm">Suporte incluso</p> */}
           </>
         }
         imageSrc={image.src}
