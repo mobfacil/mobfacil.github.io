@@ -1,35 +1,40 @@
+'use client';
+
 import React from 'react';
-import Image from 'next/image';
-import techVector from '@/src/images/tech_vector.png';
 import { Button } from '@/components/shared/ui/button';
-import { LandingPrimaryImageCtaSection, LandingPrimaryTextCtaSection } from '@/components/landing/cta/LandingPrimaryCta';
+import { useLocale } from '@/src/i18n/LocaleContext';
+import DecisionCard from './DecisionCard';
 
-export interface HeroProps {
-  headline: string;
-  subtext: string;
-}
+const Hero: React.FC = () => {
+  const { t } = useLocale();
 
-const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
   return (
-    <section className="bg-background text-white py-12 h-[100dvh]">
-      <div className="max-w-7xl mx-auto px-6 flex h-full items-center justify-center lg:justify-between">
-        <LandingPrimaryTextCtaSection
-          titleComponent={
-            <h1 className="font-normal text-2xl md:text-3xl lg:text-6xl leading-tight md:max-w-2xl">
-              Otimize suas{' '}
-              <span className="font-semibold underline decoration-primary-500 decoration-4 decoration-wavy">
-                vendas
-              </span><br/>
-              com confiança e segurança
+    <section className="relative flex min-h-[100dvh] items-center overflow-hidden px-6 pb-12 pt-28 md:pt-24">
+      <div className="mx-auto w-full max-w-7xl">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+          {/* Left: message + CTAs */}
+          <div className="max-w-xl text-left">
+            <h1 className="text-balance text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl lg:text-6xl">
+              {t.hero.headline} <span className="text-primary-500">{t.hero.highlight}</span>
             </h1>
-          }
-          description="Utilize dados públicos e inteligência analítica para avaliar risco de crédito com mais precisão e menos inadimplência."
-          textPosition="center"
-        >
-          {/* <Button size="xl" asChild>
-            <a href="#">Iniciar Teste Gratuito</a>
-          </Button> */}
-        </LandingPrimaryTextCtaSection>
+
+            <p className="mt-6 max-w-lg text-lg text-muted-foreground md:text-xl">{t.hero.subtext}</p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Button size="xl" variant="primary" asChild>
+                <a href="#contact">{t.hero.ctaPrimary}</a>
+              </Button>
+              <Button size="xl" variant="outlinePrimary" asChild>
+                <a href="#how-it-works">{t.hero.ctaSecondary}</a>
+              </Button>
+            </div>
+          </div>
+
+          {/* Right: live decision visual */}
+          <div className="lg:pl-6">
+            <DecisionCard />
+          </div>
+        </div>
       </div>
     </section>
   );

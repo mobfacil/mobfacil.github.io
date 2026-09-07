@@ -1,17 +1,17 @@
-/* Configure colors at https://shipixen.com/color-theme-explorer-shadcn */
+/* MobFácil brand palette, extracted from the official MobCred PPTX deck (agents/referencias) */
 export const colors = {
   primary: {
-    lighter: '#9BF77D',
-    light: '#7FE655',
-    main: '#5FD23C',
-    dark: '#3EA11F',
-    darker: '#2F7C18',
+    lighter: '#B6ECD1',
+    light: '#4FC98E',
+    main: '#009444',
+    dark: '#00783A',
+    darker: '#00552A',
   },
   secondary: {
-    lighter: '#7DD3FC',
-    light: '#38BDF8',
-    main: '#0EA5E9',
-    dark: '#0284C7',
-    darker: '#0369A1',
+    lighter: '#A9B0C4',
+    light: '#5866A0',
+    main: '#2C3878',
+    dark: '#212C65',
+    darker: '#171F47',
   },
 };

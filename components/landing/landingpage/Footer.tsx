@@ -1,47 +1,49 @@
 import React from 'react';
 import { Linkedin } from 'lucide-react';
-
-export interface FooterColumn {
-  title: string;
-  links: { label: string; href: string }[];
-}
-
-export interface FooterProps {
-  columns: FooterColumn[];
-}
+import { useLocale } from '@/src/i18n/LocaleContext';
 
 const socialLinks = [
   { icon: Linkedin, href: 'https://www.linkedin.com/company/mobf%C3%A1cil/', label: 'LinkedIn' },
 ];
 
-const Footer: React.FC<FooterProps> = ({ columns }) => {
+const Footer: React.FC = () => {
+  const { t } = useLocale();
+
+  const legalLinks = [
+    { label: t.footer.privacy, href: '/privacidade' },
+    { label: t.footer.terms, href: '/termos' },
+    { label: t.footer.cookies, href: '/cookies' },
+  ];
+
   return (
-    <footer className="bg-background border-t border-border py-12">
-      {/* Desktop */}
-      <div className="flex flex-col items-center max-w-7xl mx-auto px-6 mb-8">
-        {columns.map((col, i) => (
-          <div key={i}>
-            <h4 className="text-lg font-semibold text-white mb-4 text-center">{col.title}</h4>
-            <ul className="flex flex-wrap gap-4">
-              {col.links.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className="text-gray-300 hover:text-primary-400 transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+    <footer className="border-t border-border bg-background py-12">
+      <div className="mx-auto mb-8 flex max-w-7xl flex-col items-center px-6">
+        <p className="mb-4 text-sm text-muted-foreground">{t.footer.tagline}</p>
+        <h4 className="mb-4 text-center text-lg font-semibold text-foreground">{t.footer.legalTitle}</h4>
+        <ul className="flex flex-wrap justify-center gap-4">
+          {legalLinks.map((link) => (
+            <li key={link.href}>
+              <a href={link.href} className="text-muted-foreground transition-colors hover:text-primary-500">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
-      <div className="flex justify-center gap-6 mb-4">
-        {socialLinks.map((s, i) => (
-          <a key={i} href={s.href} className="text-gray-300 hover:text-primary-400 transition-colors">
-            <s.icon className="w-8 h-8" />
+      <div className="mb-4 flex justify-center gap-6">
+        {socialLinks.map((s) => (
+          <a
+            key={s.label}
+            href={s.href}
+            className="text-muted-foreground transition-colors hover:text-primary-500"
+          >
+            <s.icon className="h-8 w-8" />
           </a>
         ))}
       </div>
-      <p className="text-center text-gray-500 text-sm">© {new Date().getFullYear()} MobFacil. Todos os direitos reservados.</p>
+      <p className="text-center text-sm text-muted-foreground">
+        © {new Date().getFullYear()} MobFácil. {t.footer.rights}
+      </p>
     </footer>
   );
 };
