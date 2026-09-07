@@ -32,8 +32,8 @@ export const LandingHeaderMenuItem = ({
       className={clsx(
         'transition-colors font-medium',
         variant === 'primary'
-          ? 'text-white dark:text-gray-200 hover:text-primary-500 dark:hover:text-primary-500'
-          : 'text-white dark:text-gray-200 hover:text-secondary-500 dark:hover:text-secondary-500',
+          ? 'text-foreground/80 hover:text-primary-600 dark:hover:text-primary-400'
+          : 'text-foreground/80 hover:text-secondary-600 dark:hover:text-secondary-400',
         className,
       )}
     >

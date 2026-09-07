@@ -3,33 +3,29 @@
 import React from 'react';
 import { LandingHeader } from '@/components/landing/navigation/LandingHeader';
 import { LandingHeaderMenuItem } from '@/components/landing/navigation/LandingHeaderMenuItem';
+import { ThemeToggle } from '@/components/shared/ThemeToggle';
+import { LanguageSwitcher } from './LanguageSwitcher';
+import { useLocale } from '@/src/i18n/LocaleContext';
 
-export interface NavbarProps {
-  links: { label: string; href: string }[];
-}
+const NavbarMobile: React.FC = () => {
+  const { t } = useLocale();
 
-const NavbarMobile: React.FC<NavbarProps> = ({ links }) => {
   return (
-    <div className=''>
+    <div className="w-full">
       <LandingHeader
         fixed
         className="bg-transparent dark:bg-transparent !border-none !border-0 !shadow-none !backdrop-blur-0"
-        sheetClassName="bg-neutral-900 text-white border-l border-white/10"
+        sheetClassName="bg-background text-foreground border-l border-border"
+        rightSlot={<ThemeToggle label={t.nav.themeToggle} />}
       >
-        <LandingHeaderMenuItem
-          href="#hero"
-          label="Home"
-        />
-
-        <LandingHeaderMenuItem
-          href="#features"
-          label="Serviços"
-        />
-
-        <LandingHeaderMenuItem
-          href="#testimonials"
-          label="Clientes"
-        />
+        <LandingHeaderMenuItem href="#how-it-works" label={t.nav.howItWorks} />
+        <LandingHeaderMenuItem href="#platform" label={t.nav.platform} />
+        <LandingHeaderMenuItem href="#services" label={t.nav.services} />
+        <LandingHeaderMenuItem href="#clients" label={t.nav.clients} />
+        <LandingHeaderMenuItem href="#contact" label={t.nav.cta} />
+        <div className="pt-2">
+          <LanguageSwitcher />
+        </div>
       </LandingHeader>
     </div>
   );
