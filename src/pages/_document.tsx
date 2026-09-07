@@ -1,17 +1,41 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
 
-export default function Document() {
-  return (
-    <Html lang="en">
-      <Head>
-        <title>MobFácil</title>
-        <meta name="description" content="MobFácil - Onboarding Digital Fácil e Seguro" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  )
+const THEME_INIT_SCRIPT = `(function () {
+  try {
+    var stored = localStorage.getItem('mobfacil-theme');
+    var isDark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (isDark) document.documentElement.classList.add('dark');
+  } catch (e) {}
+})();`
+
+interface DocumentProps {
+  locale: string
+}
+
+export default class MyDocument extends Document<DocumentProps> {
+  static async getInitialProps(ctx: DocumentContext) {
+    const initialProps = await Document.getInitialProps(ctx)
+    const pathname = ctx.pathname || ''
+    let locale = 'pt-BR'
+    if (pathname.startsWith('/en')) locale = 'en'
+    else if (pathname.startsWith('/es')) locale = 'es'
+    return { ...initialProps, locale }
+  }
+
+  render() {
+    const { locale } = this.props
+
+    return (
+      <Html lang={locale}>
+        <Head>
+          <link rel="icon" href="/favicon.ico" />
+          <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
 }

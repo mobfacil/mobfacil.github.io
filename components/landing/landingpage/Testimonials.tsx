@@ -1,5 +1,6 @@
 import React from 'react';
 import { LandingTestimonialGrid } from '../testimonial/LandingTestimonialGrid';
+import { useLocale } from '@/src/i18n/LocaleContext';
 
 import senffLogo from '@/src/images/senff_logo.png';
 import festcardLogo from '@/src/images/festcard_logo.svg';
@@ -8,6 +9,8 @@ import difabricaLogo from '@/src/images/difabrica_logo.jpg';
 import masterMagazineLogo from '@/src/images/logo_master_magazine.avif';
 
 const Testimonials: React.FC = () => {
+  const { t } = useLocale();
+
   const testimonialItems = [
     { imageSrc: senffLogo, url: 'https://www.senff.com.br/' },
     { imageSrc: festcardLogo, url: 'https://www.cartaofestcard.com.br/' },
@@ -18,7 +21,7 @@ const Testimonials: React.FC = () => {
 
   return (
     <LandingTestimonialGrid
-      title="Clientes Satisfeitos"
+      title={t.clients.title}
       description=""
       testimonialItems={testimonialItems}
     />

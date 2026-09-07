@@ -4,61 +4,74 @@
 
 @layer base {
   :root {
-    --hard-shadow: 0px 29px 52px 0px rgba(0, 0, 0, 0.4),
-      22px 25px 16px 0px rgba(0, 0, 0, 0.2);
-    --hard-shadow-left: 0px 29px 52px 0px rgba(0, 0, 0, 0.4),
-      -22px 25px 16px 0px rgba(0, 0, 0, 0.2);
-    /* If you use Shadcn UI already, you should already have these variables defined */
-    /* Brand palette */
-    --background: 231 87% 9%; /* #03092A */
-    --foreground: 0 0% 100%; /* #FFFFFF */
-    --card: 230 45% 12%;
-    --card-foreground: 0 0% 98%;
+    --hard-shadow: 0px 29px 52px 0px rgba(0, 0, 0, 0.15),
+      22px 25px 16px 0px rgba(0, 0, 0, 0.08);
+    --hard-shadow-left: 0px 29px 52px 0px rgba(0, 0, 0, 0.15),
+      -22px 25px 16px 0px rgba(0, 0, 0, 0.08);
+    /* Light theme — MobFácil brand palette (see data/config/colors.js) */
+    --background: 0 0% 100%; /* #FFFFFF */
+    --foreground: 230 51% 18%; /* #171F47 */
+    --card: 222 28% 96%; /* #F2F4F8 */
+    --card-foreground: 230 51% 18%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
+    --popover-foreground: 230 51% 18%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 28% 91%; /* #E1E5EE */
+    --secondary-foreground: 230 51% 18%;
+    --muted: 222 28% 94%;
+    --muted-foreground: 223 12% 40%; /* #5A6173 */
+    --accent: 149 65% 92%; /* #E3F3EA */
+    --accent-foreground: 230 51% 18%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
-    --border: 231 30% 25%;
-    --input: 231 30% 25%;
+    --border: 222 28% 88%;
+    --input: 222 28% 88%;
     --radius: 0.5rem;
     --primary-lighter-hex: theme('colors.primary.200');
     --secondary-lighter-hex: theme('colors.secondary.200');
     --primary-dark-hex: theme('colors.primary.800');
     --secondary-dark-hex: theme('colors.secondary.800');
+    /* Raw hex custom properties consumed via getComputedStyle by the cta-backgrounds/pill components */
+    --primary-lighter: theme('colors.primary.200');
+    --primary-main: theme('colors.primary.500');
+    --primary-darker: theme('colors.primary.900');
+    --secondary-lighter: theme('colors.secondary.200');
+    --secondary-main: theme('colors.secondary.500');
+    --secondary-darker: theme('colors.secondary.900');
   }
 
   .dark {
-    /* If you use Shadcn UI already, you can skip this block. */
-    --background: 20 14.3% 4.1%;
-    --foreground: 0 0% 95%;
-    --card: 24 9.8% 10%;
-    --card-foreground: 0 0% 95%;
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 95%;
-    --primary-foreground: 144.9 80.4% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 12 6.5% 15.1%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    /* Dark theme — MobFácil brand navy */
+    --hard-shadow: 0px 29px 52px 0px rgba(0, 0, 0, 0.4),
+      22px 25px 16px 0px rgba(0, 0, 0, 0.2);
+    --hard-shadow-left: 0px 29px 52px 0px rgba(0, 0, 0, 0.4),
+      -22px 25px 16px 0px rgba(0, 0, 0, 0.2);
+    --background: 230 51% 10%; /* deep navy, darker than #171F47 */
+    --foreground: 220 30% 96%; /* #F2F4F8 */
+    --card: 230 51% 15%;
+    --card-foreground: 220 30% 96%;
+    --popover: 230 51% 12%;
+    --popover-foreground: 220 30% 96%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 230 40% 22%; /* #2C3878-ish */
+    --secondary-foreground: 220 30% 96%;
+    --muted: 230 35% 20%;
+    --muted-foreground: 220 13% 64%; /* #98A0B0 */
+    --accent: 230 40% 24%;
+    --accent-foreground: 220 30% 96%;
+    --destructive: 0 62.8% 40%;
     --destructive-foreground: 0 85.7% 97.3%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
+    --border: 230 30% 25%;
+    --input: 230 30% 25%;
   }
 
   body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-space-default), ui-sans-serif, system-ui, -apple-system,
+      'Segoe UI', Roboto, sans-serif;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   *,

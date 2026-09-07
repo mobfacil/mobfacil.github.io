@@ -99,7 +99,7 @@ export const SheetContent = ({ children, side = 'right', className }: SheetConte
         role="dialog"
         aria-modal="true"
         className={clsx(
-          'relative h-full w-80 max-w-[80vw] shadow-2xl p-6 overflow-y-auto bg-[#03092B] border-[#5FD23C] rounded-lg',
+          'relative h-full w-80 max-w-[80vw] shadow-2xl p-6 overflow-y-auto rounded-lg border',
           'transform transition-transform duration-300 ease-out will-change-transform',
           entered
             ? 'translate-x-0'
@@ -107,7 +107,7 @@ export const SheetContent = ({ children, side = 'right', className }: SheetConte
               ? 'translate-x-full'
               : '-translate-x-full',
           side === 'right' ? 'ml-auto rounded-l-2xl' : 'mr-auto rounded-r-2xl',
-          className ?? 'bg-white dark:bg-neutral-950',
+          className ?? 'bg-background text-foreground border-border',
         )}
       >
         {children}
