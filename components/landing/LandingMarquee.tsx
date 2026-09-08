@@ -69,7 +69,7 @@ export const LandingMarquee = ({
     >
       <div
         className={clsx(
-          'flex animate-marquee',
+          'flex animate-marquee motion-reduce:animate-none',
           animationDirection === 'left' ? 'direction-reverse' : '',
           innerClassName,
         )}

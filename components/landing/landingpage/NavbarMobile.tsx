@@ -14,14 +14,12 @@ const NavbarMobile: React.FC = () => {
     <div className="w-full">
       <LandingHeader
         fixed
-        className="bg-transparent dark:bg-transparent !border-none !border-0 !shadow-none !backdrop-blur-0"
         sheetClassName="bg-background text-foreground border-l border-border"
         rightSlot={<ThemeToggle label={t.nav.themeToggle} />}
       >
         <LandingHeaderMenuItem href="#how-it-works" label={t.nav.howItWorks} />
         <LandingHeaderMenuItem href="#platform" label={t.nav.platform} />
         <LandingHeaderMenuItem href="#services" label={t.nav.services} />
-        <LandingHeaderMenuItem href="#clients" label={t.nav.clients} />
         <LandingHeaderMenuItem href="#contact" label={t.nav.cta} />
         <div className="pt-2">
           <LanguageSwitcher />
