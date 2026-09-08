@@ -1,43 +1,139 @@
 import React from 'react';
+import Head from 'next/head';
+import { LegalLayout, LegalSection } from '@/components/legal/LegalLayout';
+
+const sections: LegalSection[] = [
+  {
+    id: 'aceitacao',
+    title: 'Aceitação dos termos',
+    content: (
+      <p>
+        Estes Termos de Uso regulam o acesso e a navegação no site institucional da MOBFACIL SOLUCOES TECNOLOGICAS
+        E DE MOBILIDADE LTDA (CNPJ 28.134.422/0001-79), disponível em{' '}
+        <a href="https://www.mobfacil.com.br">www.mobfacil.com.br</a>. Ao acessar este site, você concorda com
+        estas condições; se não concordar, pedimos que não o utilize.
+      </p>
+    ),
+  },
+  {
+    id: 'sobre-o-site',
+    title: 'Sobre este site',
+    content: (
+      <p>
+        Este é um site institucional com finalidade informativa e comercial: apresentamos aqui o MobCred, motor de
+        decisão de crédito da MobFácil, voltado a empresas como bancos, fintechs, financeiras, seguradoras,
+        indústria, varejo e saúde. As informações publicadas têm caráter geral e não constituem oferta, proposta de
+        crédito ou vínculo contratual automático — a contratação do MobCred é sempre formalizada em contrato
+        comercial específico entre a MobFácil e a empresa cliente.
+      </p>
+    ),
+  },
+  {
+    id: 'propriedade-intelectual',
+    title: 'Propriedade intelectual',
+    content: (
+      <p>
+        As marcas &quot;MobFácil&quot; e &quot;MobCred&quot;, assim como textos, layout, imagens e demais conteúdos
+        deste site, pertencem à MobFácil ou são utilizados sob licença. Não é permitido copiar, reproduzir ou
+        distribuir esse conteúdo sem autorização prévia por escrito.
+      </p>
+    ),
+  },
+  {
+    id: 'uso-permitido',
+    title: 'Uso permitido',
+    content: (
+      <p>
+        Você pode navegar livremente pelo site para conhecer nossos produtos e entrar em contato conosco. Não é
+        permitido utilizar o site para fins ilícitos, tentar acessar áreas restritas, extrair conteúdo em massa
+        (scraping) ou interferir no funcionamento normal da página.
+      </p>
+    ),
+  },
+  {
+    id: 'links-externos',
+    title: 'Links e redes sociais',
+    content: (
+      <p>
+        O site pode conter links para canais externos, como o nosso perfil no LinkedIn, ou permitir contato via
+        e-mail, telefone e WhatsApp. Não somos responsáveis pelo conteúdo ou pelas práticas de privacidade desses
+        serviços de terceiros.
+      </p>
+    ),
+  },
+  {
+    id: 'disponibilidade',
+    title: 'Disponibilidade do site',
+    content: (
+      <p>
+        O site é hospedado em infraestrutura de terceiro (GitHub Pages) e é fornecido &quot;como está&quot;.
+        Podemos realizar manutenções, atualizações ou enfrentar instabilidades pontuais sem aviso prévio, sem que
+        isso gere direito a indenização.
+      </p>
+    ),
+  },
+  {
+    id: 'responsabilidade',
+    title: 'Limitação de responsabilidade',
+    content: (
+      <p>
+        As informações deste site têm caráter informativo sobre a MobFácil e o MobCred. Não nos responsabilizamos
+        por decisões tomadas exclusivamente com base no conteúdo aqui publicado; recomendamos sempre falar com
+        nossa equipe comercial para informações atualizadas e específicas ao seu negócio.
+      </p>
+    ),
+  },
+  {
+    id: 'alteracoes-termos',
+    title: 'Alterações destes termos',
+    content: (
+      <p>
+        Podemos atualizar estes Termos de Uso a qualquer momento; a data no topo da página indica a versão
+        vigente.
+      </p>
+    ),
+  },
+  {
+    id: 'lei-foro',
+    title: 'Lei aplicável e foro',
+    content: (
+      <p>
+        Estes termos são regidos pelas leis brasileiras. Fica eleito o foro da comarca de Curitiba/PR para dirimir
+        eventuais controvérsias, com renúncia a qualquer outro, por mais privilegiado que seja.
+      </p>
+    ),
+  },
+  {
+    id: 'contato-termos',
+    title: 'Contato',
+    content: (
+      <p>
+        Dúvidas sobre estes termos? Escreva para <a href="mailto:contato@mobfacil.com.br">contato@mobfacil.com.br</a>.
+      </p>
+    ),
+  },
+];
 
 const TermsPage = () => {
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <div className="max-w-4xl mx-auto px-6 py-16 space-y-8">
-        <header className="space-y-3">
-          <p className="text-sm uppercase tracking-wide text-primary-500">Atualizado em março de 2026</p>
-          <h1 className="text-3xl md:text-4xl font-bold">Termos de Uso</h1>
-          <p className="text-gray-400">
-            Estes termos descrevem as condições para uso da nossa plataforma, incluindo responsabilidades e limitações.
+    <>
+      <Head>
+        <title>Termos de Uso | MobFácil</title>
+        <meta name="description" content="Condições de uso do site institucional do MobCred, produto da MobFácil." />
+      </Head>
+      <LegalLayout
+        eyebrow="Termos"
+        title="Termos de Uso"
+        updatedLabel="Atualizado em setembro de 2026"
+        intro={
+          <p>
+            Estas são as condições para navegar neste site e conhecer o MobCred, incluindo responsabilidades e
+            limites de uso.
           </p>
-        </header>
-
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">1. Aceitação</h2>
-          <p className="text-gray-300">Ao utilizar o serviço, você concorda com estes termos e políticas associadas.</p>
-        </section>
-
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">2. Uso permitido</h2>
-          <p className="text-gray-300">Utilize a plataforma de forma legal, segura e conforme as finalidades contratadas.</p>
-        </section>
-
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">3. Conta e segurança</h2>
-          <p className="text-gray-300">Mantenha credenciais em segurança e comunique acessos não autorizados imediatamente.</p>
-        </section>
-
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">4. Limitação de responsabilidade</h2>
-          <p className="text-gray-300">Fornecemos o serviço como está, respeitando os limites previstos em contrato e na lei.</p>
-        </section>
-
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">5. Contato</h2>
-          <p className="text-gray-300">Para dúvidas sobre estes termos, fale com nossa equipe de suporte.</p>
-        </section>
-      </div>
-    </main>
+        }
+        sections={sections}
+      />
+    </>
   );
 };
 

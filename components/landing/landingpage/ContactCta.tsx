@@ -1,9 +1,12 @@
 'use client';
 
 import React from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Mail, Phone } from 'lucide-react';
 import { LandingSaleCtaSection } from '@/components/landing/cta/LandingSaleCta';
 import { useLocale } from '@/src/i18n/LocaleContext';
+
+const easeOut = [0.16, 1, 0.3, 1] as const;
 
 const WhatsappIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
@@ -17,22 +20,34 @@ const ContactItem: React.FC<{ icon: React.ElementType; label: string; value: str
   value,
   href,
 }) => (
-  <a
+  <motion.a
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 text-left transition-colors hover:bg-accent"
+    variants={{
+      hidden: { opacity: 0, y: 16 },
+      show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeOut } },
+    }}
+    className="group flex items-center gap-3 rounded-xl border border-border bg-card p-4 text-left shadow-[0_16px_40px_-28px_rgba(23,31,71,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:border-primary-500/30 hover:shadow-[0_22px_48px_-24px_rgba(0,120,58,0.35)]"
   >
-    <Icon className="h-5 w-5 shrink-0 text-primary-600 dark:text-primary-400" />
+    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary-500/10 text-primary-600 transition-transform duration-300 group-hover:scale-110 dark:text-primary-400">
+      <Icon className="h-4 w-4" />
+    </span>
     <span className="flex flex-col">
       <span className="text-xs uppercase tracking-wide text-muted-foreground">{label}</span>
       <span className="font-medium text-foreground">{value}</span>
     </span>
-  </a>
+  </motion.a>
 );
 
 const ContactCta: React.FC = () => {
   const { t } = useLocale();
+  const reduce = useReducedMotion();
+
+  const container = {
+    hidden: {},
+    show: { transition: { staggerChildren: reduce ? 0 : 0.1, delayChildren: reduce ? 0 : 0.1 } },
+  };
 
   return (
     <LandingSaleCtaSection
@@ -51,11 +66,17 @@ const ContactCta: React.FC = () => {
       ctaLabel={t.contact.ctaLabel}
       ctaHref="mailto:danilo@mobfacil.com.br"
       footerComponent={
-        <div className="mt-10 grid gap-4 sm:grid-cols-3">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+          className="mt-10 grid gap-4 sm:grid-cols-3"
+        >
           <ContactItem icon={Mail} label={t.contact.emailLabel} value="danilo@mobfacil.com.br" href="mailto:danilo@mobfacil.com.br" />
           <ContactItem icon={Phone} label={t.contact.phoneLabel} value="+55 41 98533-1707" href="tel:+5541985331707" />
           <ContactItem icon={WhatsappIcon} label="WhatsApp" value="+55 41 98533-1707" href="https://wa.me/5541985331707" />
-        </div>
+        </motion.div>
       }
     />
   );

@@ -39,7 +39,7 @@ export function LandingBentoGridItem({
   ...props
 }: BentoGridItem) {
   const gridItemClasses = clsx(
-    'flex flex-col p-4 rounded-xl border shadow-sm transition-all duration-200 overflow-hidden',
+    'group flex flex-col p-4 rounded-xl border shadow-sm transition-all duration-200 overflow-hidden',
     variant === 'default' && 'bg-slate-100/40 dark:bg-slate-900/20',
     variant === 'primary' && 'bg-primary-100/20 dark:bg-primary-900/10',
     variant === 'secondary' && 'bg-secondary-100/20 dark:bg-secondary-900/10',
@@ -50,7 +50,7 @@ export function LandingBentoGridItem({
     rowSpan === 1 ? 'row-span-1' : '',
     rowSpan === 2 ? 'row-span-2' : '',
     rowSpan === 3 ? 'row-span-3' : '',
-    'hover:shadow-md hover:border-primary-200 dark:hover:border-primary-800',
+    'hover:-translate-y-1 hover:shadow-md hover:border-primary-200 dark:hover:border-primary-800',
     className,
   );
 

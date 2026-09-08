@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import { cn } from '@/lib/utils';
 import { LandingBentoGridItem, BentoGridItem } from './LandingBentoGridItem';
 
 export interface LandingBentoGridSectionProps {
@@ -89,7 +90,7 @@ export function LandingBentoGridSection({
           ))}
 
         <div
-          className={clsx(
+          className={cn(
             'w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6',
             gridClassName,
           )}
