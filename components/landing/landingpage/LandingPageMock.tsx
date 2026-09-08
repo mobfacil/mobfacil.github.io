@@ -12,10 +12,8 @@ import HowItWorks from './HowItWorks';
 import DataSources from './DataSources';
 import Services from './Services';
 import BenefitsSegments from './BenefitsSegments';
-import Testimonials from './Testimonials';
 import ContactCta from './ContactCta';
 import Footer from './Footer';
-import { LandingCurvedLinesCtaBg } from '@/components/landing/cta-backgrounds/LandingCurvedLinesCtaBg';
 import { LocaleProvider, useLocale } from '@/src/i18n/LocaleContext';
 import { Locale } from '@/src/i18n';
 
@@ -44,8 +42,6 @@ const LandingPageContent: React.FC = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, ease: easeOut }}
       >
-        <LandingCurvedLinesCtaBg variant="primary" />
-
         <div className="md:hidden">
           <NavbarMobile />
         </div>
@@ -54,9 +50,9 @@ const LandingPageContent: React.FC = () => {
         </div>
 
         <main className="flex-1">
-          <motion.section id="hero" {...sectionMotion}>
+          <section id="hero">
             <Hero />
-          </motion.section>
+          </section>
           <motion.section id="overview" {...sectionMotion}>
             <Overview />
           </motion.section>
@@ -74,9 +70,6 @@ const LandingPageContent: React.FC = () => {
           </motion.section>
           <motion.section id="benefits" {...sectionMotion}>
             <BenefitsSegments />
-          </motion.section>
-          <motion.section id="clients" {...sectionMotion}>
-            <Testimonials />
           </motion.section>
           <motion.section id="contact" {...sectionMotion}>
             <ContactCta />

@@ -1,16 +1,57 @@
 'use client';
 
-import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import React, { useRef } from 'react';
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from 'framer-motion';
 import { Check, FileText, ShieldCheck } from 'lucide-react';
 import { useLocale } from '@/src/i18n/LocaleContext';
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
+const MAX_TILT_DEG = 10;
 
 const DecisionCard: React.FC = () => {
   const { t } = useLocale();
   const reduce = useReducedMotion();
   const demo = t.hero.demo;
+
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const pointerX = useMotionValue(0.5);
+  const pointerY = useMotionValue(0.5);
+
+  const rotateX = useSpring(useMotionValue(0), { stiffness: 200, damping: 22 });
+  const rotateY = useSpring(useMotionValue(0), { stiffness: 200, damping: 22 });
+
+  const glareXSpring = useSpring(pointerX, { stiffness: 200, damping: 22 });
+  const glareYSpring = useSpring(pointerY, { stiffness: 200, damping: 22 });
+  const glareXPercent = useTransform(glareXSpring, (value) => `${value * 100}%`);
+  const glareYPercent = useTransform(glareYSpring, (value) => `${value * 100}%`);
+  const glareBackground = useMotionTemplate`radial-gradient(circle at ${glareXPercent} ${glareYPercent}, rgba(255,255,255,0.16), transparent 60%)`;
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (reduce || !cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const px = (event.clientX - rect.left) / rect.width;
+    const py = (event.clientY - rect.top) / rect.height;
+
+    pointerX.set(px);
+    pointerY.set(py);
+    rotateY.set((px - 0.5) * MAX_TILT_DEG * 2);
+    rotateX.set(-(py - 0.5) * MAX_TILT_DEG * 2);
+  };
+
+  const handlePointerLeave = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+    pointerX.set(0.5);
+    pointerY.set(0.5);
+  };
 
   const container = {
     hidden: {},
@@ -30,7 +71,7 @@ const DecisionCard: React.FC = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative" style={{ perspective: 1400 }}>
       {/* Ambient brand glow behind the card */}
       <div
         aria-hidden
@@ -38,12 +79,29 @@ const DecisionCard: React.FC = () => {
       />
 
       <motion.div
+        ref={cardRef}
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
         variants={container}
         initial="hidden"
         whileInView="show"
+        whileTap={reduce ? undefined : { scale: 0.99 }}
         viewport={{ once: true, amount: 0.5 }}
-        className="w-full rounded-2xl border border-border bg-card p-6 shadow-[0_20px_60px_-20px_rgba(23,31,71,0.35)]"
+        style={
+          reduce
+            ? undefined
+            : { rotateX, rotateY, transformStyle: 'preserve-3d', willChange: 'transform' }
+        }
+        className="relative w-full rounded-2xl border border-border bg-card p-6 shadow-[0_20px_60px_-20px_rgba(23,31,71,0.35)] transition-shadow duration-300 hover:shadow-[0_28px_70px_-18px_rgba(23,31,71,0.45)]"
       >
+        {!reduce ? (
+          <motion.div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 rounded-2xl"
+            style={{ background: glareBackground }}
+          />
+        ) : null}
+
         <div className="flex items-center justify-between">
           <span className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
             <span className="relative flex h-2.5 w-2.5">
