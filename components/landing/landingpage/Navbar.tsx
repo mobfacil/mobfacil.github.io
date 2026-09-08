@@ -25,7 +25,6 @@ const Navbar: React.FC = () => {
       <LandingHeaderMenuItem href="#how-it-works" label={t.nav.howItWorks} />
       <LandingHeaderMenuItem href="#platform" label={t.nav.platform} />
       <LandingHeaderMenuItem href="#services" label={t.nav.services} />
-      <LandingHeaderMenuItem href="#clients" label={t.nav.clients} />
       <Button size="sm" asChild>
         <a href="#contact">{t.nav.cta}</a>
       </Button>

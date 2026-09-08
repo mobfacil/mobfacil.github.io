@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import clsx from 'clsx';
 import { convertToRgba } from '@/lib/utils';
 
@@ -28,6 +28,7 @@ export const LandingFlickeringGridCtaBg = ({
     'rgba(34, 34, 34,',
     'rgba(100, 100, 100,',
   ]);
+  const reduce = useReducedMotion();
   const [isInView, setIsInView] = useState(false);
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
   const [colors, setColors] = useState({
@@ -210,11 +211,12 @@ export const LandingFlickeringGridCtaBg = ({
   }, [generateNewColors]);
 
   useEffect(() => {
+    if (reduce) return;
     const interval = setInterval(() => {
       generateNewColors();
     }, cycleDuration);
     return () => clearInterval(interval);
-  }, [generateNewColors, cycleDuration]);
+  }, [generateNewColors, cycleDuration, reduce]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -225,7 +227,7 @@ export const LandingFlickeringGridCtaBg = ({
     if (!ctx) return;
 
     let animationFrameId: number;
-    let gridParams: ReturnType<typeof setupCanvas>;
+    let gridParams: ReturnType<typeof setupCanvas> | undefined;
     let isInitialized = false;
 
     const updateCanvasSize = () => {
@@ -295,7 +297,21 @@ export const LandingFlickeringGridCtaBg = ({
 
     intersectionObserver.observe(canvas);
 
-    if (isInView) {
+    if (reduce) {
+      // Draw a single static frame instead of a continuous flicker loop.
+      if (gridParams) {
+        drawGrid(
+          ctx,
+          canvas.width,
+          canvas.height,
+          gridParams.cols,
+          gridParams.rows,
+          gridParams.squares,
+          gridParams.squareColors,
+          gridParams.dpr,
+        );
+      }
+    } else if (isInView) {
       animationFrameId = requestAnimationFrame(animate);
     }
 
@@ -304,7 +320,7 @@ export const LandingFlickeringGridCtaBg = ({
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
     };
-  }, [setupCanvas, updateSquares, drawGrid, isInView]);
+  }, [setupCanvas, updateSquares, drawGrid, isInView, reduce]);
 
   return (
     <div ref={domRef} className={clsx('inset-0', className)}>
