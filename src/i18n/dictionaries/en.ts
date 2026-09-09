@@ -12,6 +12,7 @@ export const en: Dictionary = {
     platform: 'Platform',
     dataSources: 'Data sources',
     services: 'Services',
+    docs: 'Documentation',
     clients: 'Clients',
     contact: 'Contact',
     cta: "Let's talk",
