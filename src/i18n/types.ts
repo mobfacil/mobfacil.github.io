@@ -20,6 +20,7 @@ export interface Dictionary {
     platform: string;
     dataSources: string;
     services: string;
+    docs: string;
     clients: string;
     contact: string;
     cta: string;
