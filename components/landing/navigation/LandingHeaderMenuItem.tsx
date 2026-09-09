@@ -10,6 +10,7 @@ export const LandingHeaderMenuItem = ({
   label = '',
   type = 'link',
   variant = 'primary',
+  external = false,
   className,
   children,
 }: {
@@ -17,18 +18,24 @@ export const LandingHeaderMenuItem = ({
   label?: string | React.ReactNode;
   type?: 'button' | 'link' | 'icon-button';
   variant?: 'primary' | 'secondary' | 'ghost';
+  external?: boolean;
   className?: string;
   children?: React.ReactNode;
 }) => {
+  const externalProps = external
+    ? { target: '_blank' as const, rel: 'noopener noreferrer' }
+    : {};
+
   if (type === 'button' || type === 'icon-button') {
     return (
-        <Link href={href}>{label}</Link>
+        <Link href={href} {...externalProps}>{label}</Link>
     );
   }
 
   return (
     <Link
       href={href}
+      {...externalProps}
       className={clsx(
         'transition-colors font-medium',
         variant === 'primary'

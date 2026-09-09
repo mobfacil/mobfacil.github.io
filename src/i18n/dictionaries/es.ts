@@ -12,6 +12,7 @@ export const es: Dictionary = {
     platform: 'Plataforma',
     dataSources: 'Fuentes de datos',
     services: 'Servicios',
+    docs: 'Documentación',
     clients: 'Clientes',
     contact: 'Contacto',
     cta: 'Conversemos',
