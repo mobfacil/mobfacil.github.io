@@ -64,7 +64,7 @@ const ContactCta: React.FC = () => {
       }
       description={t.contact.description}
       ctaLabel={t.contact.ctaLabel}
-      ctaHref="mailto:danilo@mobfacil.com.br"
+      ctaHref="mailto:contato@mobfacil.com.br"
       footerComponent={
         <motion.div
           variants={container}
@@ -73,9 +73,9 @@ const ContactCta: React.FC = () => {
           viewport={{ once: true, amount: 0.4 }}
           className="mt-10 grid gap-4 sm:grid-cols-3"
         >
-          <ContactItem icon={Mail} label={t.contact.emailLabel} value="danilo@mobfacil.com.br" href="mailto:danilo@mobfacil.com.br" />
-          <ContactItem icon={Phone} label={t.contact.phoneLabel} value="+55 41 98533-1707" href="tel:+5541985331707" />
-          <ContactItem icon={WhatsappIcon} label="WhatsApp" value="+55 41 98533-1707" href="https://wa.me/5541985331707" />
+          <ContactItem icon={Mail} label={t.contact.emailLabel} value="contato@mobfacil.com.br" href="mailto:contato@mobfacil.com.br" />
+          <ContactItem icon={Phone} label={t.contact.phoneLabel} value="+55 41 99735-0723" href="tel:+5541997350723" />
+          <ContactItem icon={WhatsappIcon} label="WhatsApp" value="+55 41 99735-0723" href="https://wa.me/5541997350723" />
         </motion.div>
       }
     />
